@@ -26,7 +26,6 @@ The features V1, V2, ... V28 are the principal components obtained with PCA.
 The only features which have not been transformed with PCA are Time and Amount. Feature Time contains the seconds elapsed between each transaction and the first transaction in the dataset. The feature Amount is the transaction Amount, this feature can be used for example-dependant cost-senstive learning
 Feature "class" is the response variable and it takes value 1 in case of fraud and 0 otherwise.
 
-(Provide more detailed overview of the project.  Talk a bit about your data sources and what questions and hypothesis you are exploring. What specific data analysis/visualization and modelling work are you using to solve the problem? What blockers and challenges are you facing?  Feel free to number or bullet point things here)
 Post investigation of the data, relationships between different features were focused upon. ![alt text](https://github.com/AlpeshPatil34/Credit-Card-Fraud-Detection/blob/master/images/Correlation%20plot%20with%20Pearsons.jpg). 
 
 The data was split in 3 parts, a train set, a validation set and a test set. For the first three models, we only used the train and test set.
