@@ -12,65 +12,44 @@ It contains only numerical input variables which are the result of a PCA transfo
 
 ### Methods Used
 * Inferential Statistics
-* Machine Learning
+* Ensemble Learning
 * Data Visualization
 * Predictive Modeling
-* etc.
 
 ### Technologies
-* R 
 * Python
-* D3
-* PostGres, MySql
+* Plotly, Seaborn, Matlplotlib
 * Pandas, jupyter
-* HTML
-* JavaScript
-* etc. 
+* Catboost, AdaBoost, xgboost, Lightgbm, Random Forest
+
 
 ## Project Description
+The data was obtained from a competition held on Kaggle.com.
+The features V1, V2, ... V28 are the principal components obtained with PCA.
+The only features which have not been transformed with PCA are Time and Amount. Feature Time contains the seconds elapsed between each transaction and the first transaction in the dataset. The feature Amount is the transaction Amount, this feature can be used for example-dependant cost-senstive learning
+Feature "class" is the response variable and it takes value 1 in case of fraud and 0 otherwise.
+
 (Provide more detailed overview of the project.  Talk a bit about your data sources and what questions and hypothesis you are exploring. What specific data analysis/visualization and modelling work are you using to solve the problem? What blockers and challenges are you facing?  Feel free to number or bullet point things here)
+Post investigation of the data, relationships between different features were focused upon. ![alt text](https://github.com/AlpeshPatil34/Credit-Card-Fraud-Detection/blob/master/images/Correlation%20plot%20with%20Pearsons.jpg). 
 
-## Needs of this project
+The data was split in 3 parts, a train set, a validation set and a test set. For the first three models, we only used the train and test set.
 
-- frontend developers
-- data exploration/descriptive statistics
-- data processing/cleaning
-- statistical modeling
-- writeup/reporting
-- etc. (be as specific as possible)
+Since no clear relationships were defined, singular one-on-one correlations were checked. Post that, 4 ensemble predictive models were employed to understand how well the predictions can be done, and on the basis of prerequiste parameters, AUC-ROC scores were calculated to quantifiy the comparisons of the same.
 
-## Getting Started
+![alt text](https://github.com/AlpeshPatil34/Credit-Card-Fraud-Detection/blob/master/images/ROC%20Analysis.jpg)
 
-1. Clone this repo (for help see this [tutorial](https://help.github.com/articles/cloning-a-repository/)).
-2. Raw Data is being kept [here](Repo folder containing raw data) within this repo.
+We started with RandomForrestClassifier, for which we obtained an AUC scode of 0.85 when predicting the target for the test set.
 
-    *If using offline data mention that and how they may obtain the data from the froup)*
-    
-3. Data processing/transformation scripts are being kept [here](Repo folder containing data processing scripts/notebooks)
-4. etc...
+We followed with an AdaBoostClassifier model, with lower AUC score (0.83) for prediction of the test set target values.
 
-*If your project is well underway and setup is fairly complicated (ie. requires installation of many packages) create another "setup.md" file and link to it here*  
+We then followed with an CatBoostClassifier, with the AUC score after training 500 iterations 0.86.
 
-5. Follow setup [instructions](Link to file)
+We then experimented with a XGBoost model. In this case, se used the validation set for validation of the training model. The best validation score obtained was 0.984. Then we used the model with the best training step, to predict target value from the test data; the AUC score obtained was 0.974.
 
-## Featured Notebooks/Analysis/Deliverables
-* [Notebook/Markdown/Slide Deck Title](link)
-* [Notebook/Markdown/Slide DeckTitle](link)
-* [Blog Post](link)
+![alt text](https://github.com/AlpeshPatil34/Credit-Card-Fraud-Detection/blob/master/images/lightgbm%20ROC.jpg)
 
+We then presented the data to a LightGBM model. We used both train-validation split and cross-validation to evaluate the model effectiveness to predict 'Class' value, i.e. detecting if a transaction was fraudulent. With the first method we obtained values of AUC for the validation set around 0.974. For the test set, the score obtained was 0.946.
+With the cross-validation, we obtained an AUC score for the test prediction of 0.93.
 
-## Contributing DSWG Members
-
-**Team Leads (Contacts) : [Full Name](https://github.com/[github handle])(@slackHandle)**
-
-#### Other Members:
-
-|Name     |  Slack Handle   | 
-|---------|-----------------|
-|[Full Name](https://github.com/[github handle])| @johnDoe        |
-|[Full Name](https://github.com/[github handle]) |     @janeDoe    |
-
-## Contact
-* If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
-* Our slack channel is `#datasci-projectname`
-* Feel free to contact team leads with any questions or if you are interested in contributing!
+## Newer Applications - 
+Considering the data was skewered, undersampling techniques should be employed to produce further tangible results which could hold up during live data phase.
