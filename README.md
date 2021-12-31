@@ -8,7 +8,7 @@ Credit card fraud is the unauthorized use of a credit or debit card, or similar 
 
 ## Project Intro/Objective
 A predictive analysis of fraudulent activity in Credit Card transactions, this project uses multiple prediction models to compare the accuracies at which a particular transaction is considered to be fraudulent or not. This dataset presents transactions that occurred in two days, where we have 492 frauds out of 284,807 transactions. The dataset is highly skewed as the positive class(frauds), only account for 0.172% of all transactions.
-It contains only numerical input variables which are the result of a PCA transformation. 
+It contains only numerical input variables which are the result of a PCA transformation. ![alt text](https://github.com/AlpeshPatil34/Credit-Card-Fraud-Detection/blob/master/images/Desktop%20Screenshot%202021.12.31%20-%2012.38.29.68.png)
 
 ### Methods Used
 * Inferential Statistics
